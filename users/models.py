@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
         FEMALE = 'female'
         MALE = 'male'
 
-    avatar = models.ImageField(upload_to='media/', blank=False)
+    avatar = models.ImageField(upload_to='avatars/', blank=False)
     gender = models.CharField(choices=Gender.choices, max_length=200)
     first_name = models.CharField(max_length=150, blank=False)
     last_name = models.CharField(max_length=150, blank=False)

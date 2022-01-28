@@ -130,4 +130,5 @@ dmypy.json
 
 .idea/
 media/
+!/media/watermark.jpg
 static/
