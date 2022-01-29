@@ -25,3 +25,18 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.get_full_name()
+
+
+class UserFollow(models.Model):
+    follower = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user_following')
+    followed = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user_followed')
+
+    class Meta:
+        verbose_name = 'Following user'
+        verbose_name_plural = 'Following users'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['follower', 'followed'],
+                name='unique_following'
+            )
+        ]
