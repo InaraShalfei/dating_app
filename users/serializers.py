@@ -3,6 +3,7 @@ import string
 
 from PIL import Image
 from djoser.serializers import UserCreateSerializer
+from rest_framework import serializers
 
 from dating_app.settings import MEDIA_ROOT
 from users.models import CustomUser
@@ -30,3 +31,9 @@ class CustomUserSerializer(UserCreateSerializer):
         avatar = watermark_image(avatar)
         validated_data['avatar'] = avatar
         return super().create(validated_data)
+
+
+class UserListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = tuple(CustomUser.REQUIRED_FIELDS)
