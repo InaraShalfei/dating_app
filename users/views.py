@@ -2,9 +2,11 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 
+from django_filters.rest_framework import DjangoFilterBackend
 from dotenv import load_dotenv
-from rest_framework import status, viewsets
+from rest_framework import status, viewsets, filters
 from rest_framework.decorators import action
+from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
@@ -57,3 +59,10 @@ class CustomRegistrationView(viewsets.ModelViewSet):
             send_message(match_2.follower, match_2.followed)
             return Response({'email': match_1.followed.email})
         return Response()
+
+
+class UserSet(ListAPIView):
+    serializer_class = CustomUserSerializer
+    queryset = CustomUser.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('first_name', 'last_name', 'gender')
