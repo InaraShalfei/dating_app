@@ -10,6 +10,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
+from users.filters import DistanceFilter
 from users.models import CustomUser, UserFollow
 from users.serializers import CustomUserSerializer, UserListSerializer
 
@@ -65,4 +66,5 @@ class UserSet(ListAPIView):
     serializer_class = UserListSerializer
     queryset = CustomUser.objects.all()
     filter_backends = (DjangoFilterBackend,)
+    filter_class = DistanceFilter
     filterset_fields = ('first_name', 'last_name', 'gender')
