@@ -14,8 +14,11 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=150, blank=False)
     last_name = models.CharField(max_length=150, blank=False)
     email = models.EmailField(blank=False, unique=True)
+    longitude = models.FloatField(blank=False)
+    latitude = models.FloatField(blank=False)
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'avatar', 'gender']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'avatar', 'gender',
+                       'longitude', 'latitude']
 
     class Meta:
         verbose_name = 'user'
