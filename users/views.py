@@ -10,7 +10,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from users.filters import DistanceFilter
+from users.filters import UserSetFilter
 from users.models import CustomUser, UserFollow
 from users.serializers import CustomUserSerializer, UserListSerializer
 
@@ -19,7 +19,8 @@ load_dotenv()
 
 def send_message(follower, followed):
     msg = MIMEText(
-        f'Вы понравились {followed.first_name}! Почта участника: {followed.email}')
+        f'Вы понравились {followed.first_name}!'
+        f' Почта участника: {followed.email}')
     msg['Subject'] = 'Вы понравились!'
     msg['From'] = os.getenv('SMTP_LOGIN')
     msg['To'] = follower.email
@@ -66,5 +67,4 @@ class UserSet(ListAPIView):
     serializer_class = UserListSerializer
     queryset = CustomUser.objects.all()
     filter_backends = (DjangoFilterBackend,)
-    filter_class = DistanceFilter
-    filterset_fields = ('first_name', 'last_name', 'gender')
+    filter_class = UserSetFilter

@@ -3,8 +3,11 @@ from django_filters import rest_framework as filters
 from users.models import CustomUser
 
 
-class DistanceFilter(filters.FilterSet):
+class UserSetFilter(filters.FilterSet):
     distance = filters.RangeFilter(field_name='distance',  method='filter')
+    gender = filters.CharFilter(lookup_expr='exact')
+    first_name = filters.CharFilter(lookup_expr='exact')
+    last_name = filters.CharFilter(lookup_expr='exact')
 
     def filter(self, queryset, name, value):
         if name != 'distance':
@@ -33,6 +36,6 @@ class DistanceFilter(filters.FilterSet):
 
     class Meta:
         model = CustomUser
-        fields = ['distance']
+        fields = ['distance', 'first_name', 'last_name', 'gender']
 
 
