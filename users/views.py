@@ -51,6 +51,10 @@ class CustomRegistrationView(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'], url_path='match',
             permission_classes=IsAuthenticated)
     def match(self, request, id):
+        if request.user.id == id:
+            return Response({'message': 'Вы, конечно, нравитесь сами себе, '
+                            'но попробуйте поискать кого-то другого!'},
+                            status=status.HTTP_409_CONFLICT)
         followed = CustomUser.objects.get(id=id)
         match_1, _ = UserFollow.objects.get_or_create(follower=request.user,
                                                       followed=followed)
