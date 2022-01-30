@@ -1,4 +1,5 @@
 from django.urls import include, path
+
 from users.views import CustomRegistrationView, UserSet
 
 create = CustomRegistrationView.as_view({

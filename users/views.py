@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 
 from django_filters.rest_framework import DjangoFilterBackend
 from dotenv import load_dotenv
-from rest_framework import status, viewsets, filters
+from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated

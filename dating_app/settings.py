@@ -1,6 +1,7 @@
 import os
 from datetime import timedelta
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -131,6 +132,6 @@ SIMPLE_JWT = {
 
 DJOSER = {
     'SERIALIZERS': {
-         'user_create': 'users.serializers.CustomUserSerializer',
+        'user_create': 'users.serializers.CustomUserSerializer',
     }
 }

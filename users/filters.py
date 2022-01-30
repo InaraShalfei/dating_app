@@ -4,7 +4,7 @@ from users.models import CustomUser
 
 
 class UserSetFilter(filters.FilterSet):
-    distance = filters.RangeFilter(field_name='distance',  method='filter')
+    distance = filters.RangeFilter(field_name='distance', method='filter')
     gender = filters.CharFilter(lookup_expr='exact')
     first_name = filters.CharFilter(lookup_expr='exact')
     last_name = filters.CharFilter(lookup_expr='exact')
@@ -37,5 +37,3 @@ class UserSetFilter(filters.FilterSet):
     class Meta:
         model = CustomUser
         fields = ['distance', 'first_name', 'last_name', 'gender']
-
-
